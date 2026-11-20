@@ -58,6 +58,16 @@ In your app's Gemini (Google AI Studio) connection:
 
 The app and the adapter have to run on the same device.
 
+## Updating
+
+Download the newest version over your old one:
+
+```bash
+curl -fsSL -o ~/gemini-adapter.js https://raw.githubusercontent.com/starlitcode/gemini-key-adapter/main/gemini-adapter.js
+```
+
+Then restart the adapter.
+
 ## Android tips
 
 - Android can close Termux in the background. Run `termux-wake-lock` once per session, or turn off battery optimization for Termux, to keep the adapter alive.

@@ -155,6 +155,16 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
+server.on("error", (err) => {
+  if (err && err.code === "EADDRINUSE") {
+    console.error(`Port ${PORT} is already in use, so the adapter is probably already running.`);
+    console.error("Use the copy that is running, or stop it first and start this one again.");
+  } else {
+    console.error(`Could not start the adapter: ${err && err.message ? err.message : err}`);
+  }
+  process.exit(1);
+});
+
 server.listen(PORT, HOST, () => {
   console.log(`Gemini key adapter on http://${HOST}:${PORT} -> ${UPSTREAM}`);
   console.log("Leave this running while you chat. Ctrl+C stops it.");
