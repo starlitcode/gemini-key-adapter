@@ -61,7 +61,13 @@ The app and the adapter have to run on the same device.
 ## Android tips
 
 - Android can close Termux in the background. Run `termux-wake-lock` once per session, or turn off battery optimization for Termux, to keep the adapter alive.
-- To start it faster, add an alias to `~/.bashrc`: `alias gka='node ~/gemini-adapter.js'`
+- To start it with one word, save it as a command (this works even if your `~/.bashrc` has problems):
+
+  ```bash
+  printf '#!/data/data/com.termux/files/usr/bin/sh\ntermux-wake-lock\nexec node ~/gemini-adapter.js "$@"\n' > $PREFIX/bin/gemini-adapter && chmod +x $PREFIX/bin/gemini-adapter
+  ```
+
+  Then `gemini-adapter` starts it from anywhere in Termux.
 
 ## License
 
